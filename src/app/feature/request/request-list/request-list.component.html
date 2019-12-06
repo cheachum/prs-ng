@@ -1,13 +1,14 @@
+<app-menu></app-menu>
 <div class='component-content'>
         <div class='lefthalf'>
             <span class='component-title'>{{title}} </span>
-            <span><a routerLink='/credits/create'>
+            <span><a routerLink='/requests/create'>
                     <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
             </span>
         </div>
     </div>
     <p *ngIf='!requests'>Loading...</p>
-    <table *ngIf='requets' class="table table-sm">
+    <table *ngIf='requests' class="table table-sm">
         <tr>
             <th> <a (click)="sortBy('id')">ID</a></th>
             <th> User </th>
@@ -32,7 +33,9 @@
             <td>{{r.total}}</td>
             <td>{{r.reasonForRejection}}</td>
             <td>{{r.rsubmittedDate}}</td>
-            <td><a routerLink='/requests/detail/{{r.id}}'><img src='assets\details.png' width='20' height='20' title='Detail'></a>  | <a routerLink='/requests/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+            <td><a routerLink='/requests/detail/{{r.id}}'><img src='assets\details.png' width='20' height='20' title='Detail'></a>  | 
+                <a routerLink='/requests/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> | 
+                <a routerLink='/requests/lines/{{r.id}}'><img src='assets/lines.png' width='20' height='20' title='LineItems'></a></td>
     
         </tr>
     </tbody>

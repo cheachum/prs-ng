@@ -6,10 +6,10 @@ export class User {
     lastName: string; 
     phoneNumber: string;
     email: string;
-    isReviewer: boolean;
-    isAdmin: boolean;
+    reviewer: boolean;
+    admin: boolean;
 
-    constructor(id: number =0,userName: string= "", password: string ="", firstName: string="", lastName: string ="", phoneNumber: string ="", email: string ="", isReviewer:boolean = false, isAdmin: boolean = false){
+    constructor(id: number =0,userName: string= "", password: string ="", firstName: string="", lastName: string ="", phoneNumber: string ="", email: string ="", reviewer:boolean = false, admin: boolean = false){
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -17,8 +17,8 @@ export class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber; 
         this.email = email;
-        this.isReviewer = isReviewer;
-        this.isAdmin= isAdmin; 
+        this.reviewer = reviewer;
+        this.admin= admin; 
 
 
 

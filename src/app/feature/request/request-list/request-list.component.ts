@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../base/base/base.component';
 import { RequestService } from 'src/app/service/request.service';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-request-list',
@@ -10,8 +11,9 @@ import { RequestService } from 'src/app/service/request.service';
 export class RequestListComponent extends BaseComponent implements OnInit {
   title: string= "Requests";
   requests: Request [] =[];
-  constructor(private requestSvc: RequestService) {
-    super();
+  constructor(private requestSvc: RequestService,
+    protected sysSvc: SystemService) {
+    super(sysSvc);
   }
 
   ngOnInit() {

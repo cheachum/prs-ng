@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class='component-content'>
     <div class='lefthalf'>
         <span class='component-title'>{{title}} </span>
@@ -23,7 +24,7 @@
                     Part Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                    <input [(ngModel)]="product.partNumber" class="rounded" type="text"disabled>
                 </td>
             </tr>
             <tr>
@@ -31,7 +32,7 @@
                     Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.name" class="rounded" type="text">
+                    <input [(ngModel)]="product.name" class="rounded" type="text"disabled>
                 </td>
             </tr>
             <tr>
@@ -39,7 +40,7 @@
                     Price:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.price" class="rounded" type="number">
+                    <input [(ngModel)]="product.price" class="rounded" type="number"disabled>
                 </td>
             </tr>
             <tr>
@@ -47,7 +48,7 @@
                     Unit:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.unit" class="rounded" type="text">
+                    <input [(ngModel)]="product.unit" class="rounded" type="text" disabled>
                 </td>
             </tr>
             <tr>
@@ -55,7 +56,7 @@
                     Photo Path:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.photoPath" class="rounded" type="text">
+                    <input [(ngModel)]="product.photoPath" class="rounded" type="text" disabled>
                 </td>
             </tr>
         </table>

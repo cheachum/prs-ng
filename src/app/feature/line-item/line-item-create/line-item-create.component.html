@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+    </div>
+</div>
+<p *ngIf='!lineItem'>Loading...</p>
+<div *ngIf='lineItem'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Product:
+                </td>
+                <td>
+                    <select [(ngModel)]="lineItem.product" class="form-control">
+                        <option *ngFor="let p of products" [ngValue]="p">{{ p.name }} | {{p.vendor.name}}</option>
+                      </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Quanity:
+                </td>
+                <td>
+                    <input [(ngModel)]="lineItem.quantity" class="form-control" type="number"  name="quantity"
+            #quantity="ngModel" >
+                </td>
+            </tr>
+        </table>
+            <div>
+                <button class="btn btn-primary" (click)="save()">Save</button>
+              </div>

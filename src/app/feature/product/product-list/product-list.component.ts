@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product.class';
 import { ProductService } from 'src/app/service/product.service';
 import { BaseComponent } from '../../base/base/base.component';
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,8 +12,9 @@ import { BaseComponent } from '../../base/base/base.component';
 export class ProductListComponent extends BaseComponent implements OnInit {
 title: string = "Products";
 products: Product [] =[];
-  constructor(private productSvc: ProductService) {
-    super();
+  constructor(private productSvc: ProductService,
+              protected sysSvc: SystemService) {
+    super(sysSvc);
    }
 
   ngOnInit() {

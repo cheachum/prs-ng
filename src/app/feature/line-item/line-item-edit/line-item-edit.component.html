@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+        <span> | <a routerLink="/requests/list">Return to list...</a></span>
+    </div>
+</div>
+<p *ngIf='!lineItem'>Loading...</p>
+    <div *ngIf='lineItem'>
+        <main class="single">
+            <table class="table table-sm">
+                <tr>
+                    <td>
+                        Product:
+                    </td>
+                    <td>
+                        <select [(ngModel)]="lineItem.product" class="rounded" type="text">
+                            <option *ngFor='let p of products' [ngValue]='p'>{{p.name}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                <td>
+                    Quantity:
+                </td>
+                <td>
+                    <input [(ngModel)]="lineItem.quantity" class="rounded" type="number">
+                </td>
+            </tr>    
+</table>
+</main>
+<span><button (click)="save()" class="btn btn-sm btn-primary">Change</button></span>
+</div>

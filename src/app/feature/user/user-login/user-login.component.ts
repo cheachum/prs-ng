@@ -11,16 +11,44 @@ import { User } from 'src/app/model/user.class';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent extends BaseComponent implements OnInit {
-  message: string ="";
+  message: string = "";
   user: User = new User();
 
   constructor(private userSvc: UserService,
     protected sysSvc: SystemService,
     private router: Router) {
-      super(sysSvc);
-     }
+    super(sysSvc);
+  }
 
   ngOnInit() {
+    this.user.userName= 'CheaChum2';
+    this.user.password= 'peanut';
+
+    this.sysSvc.loggedInUser=null;
+  }
+
+  login() {
+    console.log("login called for user:", this.user);
+    this.userSvc.login(this.user)
+      .subscribe(jr => {
+        console.log("jr:", jr);
+        if (jr.errors == null) {
+          if (jr.data == null) {
+            // no error but still no user???
+            this.message = "Invalid Username/Password combo.  Retry";
+          }
+          else {
+            // should be g2g!
+            this.user = jr.data as User;
+            this.sysSvc.loggedInUser = this.user;
+            //good login, navigate to 'home; /'welcome' page
+            this.router.navigateByUrl('/users/list');
+          }
+        }
+        else {
+          this.message = "Invalid Username/Password combo.  Retry";
+        }
+      });
   }
 
 }

@@ -11,23 +11,27 @@ export class UserService {
   url: string = "http://localhost:8080/users/"
 
   constructor(private http: HttpClient) { }
-  list(): Observable<JsonResponse>{
+  list(): Observable<JsonResponse> {
     return this.http.get(this.url) as Observable<JsonResponse>;
   }
 
-  get(id: number): Observable<JsonResponse>{
-    return this.http.get(this.url+id) as Observable<JsonResponse>;
+  login(u: User): Observable<JsonResponse> {
+    return this.http.post(this.url + "login", u) as Observable<JsonResponse>;
   }
 
-  save(user: User): Observable<JsonResponse>{
+  get(id: number): Observable<JsonResponse> {
+    return this.http.get(this.url + id) as Observable<JsonResponse>;
+  }
+
+  save(user: User): Observable<JsonResponse> {
     return this.http.post(this.url, user) as Observable<JsonResponse>;
-
-}
-
-delete(id: number): Observable<JsonResponse>{
-  return this.http.delete(this.url+id) as Observable<JsonResponse>;
-
-}
+  }
+  update(user: User ): Observable<JsonResponse>{
+    return this.http.put(this.url, user) as Observable<JsonResponse>;
+  }
+  delete(id: number): Observable<JsonResponse> {
+    return this.http.delete(this.url + id) as Observable<JsonResponse>;
+  }
 
 
 

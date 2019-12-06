@@ -19,6 +19,9 @@ export class ProductService {
   save(product: Product): Observable<JsonResponse>{
     return this.http.post(this.url, product) as Observable<JsonResponse>;
 }
+update(product: Product ): Observable<JsonResponse>{
+  return this.http.put(this.url, product) as Observable<JsonResponse>;
+}
 delete(id: number): Observable<JsonResponse>{
   return this.http.delete(this.url+id) as Observable<JsonResponse>;
 
