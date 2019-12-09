@@ -4,22 +4,30 @@ import { Vendor } from 'src/app/model/vendor.class';
 import { VendorService } from 'src/app/service/vendor.service';
 import { ProductService } from 'src/app/service/product.service';
 import { Router } from '@angular/router';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base/base.component';
 
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
   styleUrls: ['./product-create.component.css']
 })
-export class ProductCreateComponent implements OnInit {
+export class ProductCreateComponent extends BaseComponent implements OnInit {
   title: string = "Product Create";
   product: Product = new Product();
   vendors: Vendor[] = [];
  
   constructor(private productSvc: ProductService, 
     private vendorSvc: VendorService,
-    private router: Router) { }
+    private router: Router,
+    protected sysSvc: SystemService) {
+      super(sysSvc);
+     }
 
-  ngOnInit() { this.vendorSvc.list().subscribe(jr=> {
+  ngOnInit() { 
+    super.ngOnInit();
+    this.sysSvc.checkLogin();
+    this.vendorSvc.list().subscribe(jr=> {
     this.vendors=jr.data as Vendor[];
     console.log("vendors", this.vendors);
   });

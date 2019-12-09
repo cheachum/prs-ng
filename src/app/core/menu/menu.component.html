@@ -1,7 +1,9 @@
-
-<nav class ="stroke"> 
+<nav class="stroke">
     <ul>
-        <li *ngFor="let mi of menuItems"title="{{mi.tooltip}}">
+        <div id="logo">
+            <img src="assets/logo.jpg" alt="prs" width='80' height='60'>
+        </div>
+        <li *ngFor="let mi of menuItems" title="{{mi.tooltip}}">
             <a routerLink="{{mi.href}}">{{mi.display}}</a>
         </li>
     </ul>

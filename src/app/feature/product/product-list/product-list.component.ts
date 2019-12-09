@@ -10,7 +10,7 @@ import { SystemService } from 'src/app/service/system.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent extends BaseComponent implements OnInit {
-title: string = "Products";
+title: string = "Product List";
 products: Product [] =[];
   constructor(private productSvc: ProductService,
               protected sysSvc: SystemService) {
@@ -18,6 +18,8 @@ products: Product [] =[];
    }
 
   ngOnInit() {
+    super.ngOnInit();
+    this.sysSvc.checkLogin();
     console.log("Calling products..");
     this.productSvc.list().subscribe(jr=> {
       console.log("jr:", jr);

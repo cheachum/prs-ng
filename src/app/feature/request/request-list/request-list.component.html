@@ -27,12 +27,13 @@
             <td>{{r.id}}</td>
             <td>{{r.user.id}}</td>
             <td>{{r.description}}</td>
+            <td>{{r.justification}}</td>
             <td>{{r.dateNeeded}}</td>
             <td>{{r.deliveryMode}}</td>
             <td>{{r.status}}</td>
-            <td>{{r.total}}</td>
+            <td>{{r.total | currency}}</td>
             <td>{{r.reasonForRejection}}</td>
-            <td>{{r.rsubmittedDate}}</td>
+            <td>{{r.submittedDate}}</td>
             <td><a routerLink='/requests/detail/{{r.id}}'><img src='assets/details.png' width='20' height='20'
                 title='Detail'></a>
         &nbsp;
