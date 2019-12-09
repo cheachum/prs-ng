@@ -14,8 +14,8 @@
                         Product:
                     </td>
                     <td>
-                        <select [(ngModel)]="lineItem.product" class="rounded" type="text">
-                            <option *ngFor='let p of products' [ngValue]='p'>{{p.name}}
+                        <select [(ngModel)]="lineItem.product" class="rounded" [compareWith] ="compProduct">
+                            <option *ngFor='let p of products' [ngValue]='p'>{{p.name}} | {{p.vendor.name}}
                             </option>
                         </select>
                     </td>

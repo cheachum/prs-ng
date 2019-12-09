@@ -23,11 +23,11 @@ export class UserLoginComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.user.userName= 'CheaChum2';
     this.user.password= 'peanut';
-
     this.sysSvc.loggedInUser=null;
   }
 
   login() {
+    super.ngOnInit();
     console.log("login called for user:", this.user);
     this.userSvc.login(this.user)
       .subscribe(jr => {

@@ -22,6 +22,7 @@ jr:JsonResponse;
 
   ngOnInit() {
     super.ngOnInit();
+    this.sysSvc.checkLogin();
     console.log("Calling user service list...");
     this.userSvc.list().subscribe(jresp => {
       this.jr =jresp;

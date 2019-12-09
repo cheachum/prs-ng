@@ -10,22 +10,20 @@ import { BaseComponent } from '../../base/base/base.component';
 })
 export class RequestReviewComponent extends BaseComponent implements OnInit {
   title: string = "Request Review";
-  userid: number;
-  requests: Request[];
-
+  requests: Request[] = [];
   constructor(protected sysSvc: SystemService,
-    private requestsvc: RequestService, ) {
+    private requestsvc: RequestService ) {
     super(sysSvc);
   }
 
   ngOnInit() {
     super.ngOnInit();
+    this.sysSvc.checkLogin();
     console.log("Calling request review service list..");
-    this.requestsvc.list().subscribe(jr => {
+    this.requestsvc.requestForReview(this.loggedInUser.id).subscribe(jr => {
       this.requests = jr.data as Request[];
       console.log(this.requests);
     });
   }
-
-
+  
 }

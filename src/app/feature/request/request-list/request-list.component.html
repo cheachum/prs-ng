@@ -33,11 +33,15 @@
             <td>{{r.total}}</td>
             <td>{{r.reasonForRejection}}</td>
             <td>{{r.rsubmittedDate}}</td>
-            <td><a routerLink='/requests/detail/{{r.id}}'><img src='assets\details.png' width='20' height='20' title='Detail'></a>  | 
-                <a routerLink='/requests/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> | 
-                <a routerLink='/requests/lines/{{r.id}}'><img src='assets/lines.png' width='20' height='20' title='LineItems'></a></td>
-    
-        </tr>
-    </tbody>
-    
-    </table>
+            <td><a routerLink='/requests/detail/{{r.id}}'><img src='assets/details.png' width='20' height='20'
+                title='Detail'></a>
+        &nbsp;
+        <a routerLink='/requests/edit/{{r.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+                title='Edit' *ngIf="isAdmin|| loggedInUser.id==r.user.id"></a>
+        &nbsp;
+        <a routerLink='/requests/lines/{{r.id}}'><img src='assets/lines.png' width='20' height='20'
+                title='Lines' *ngIf="isAdmin|| loggedInUser.id==r.user.id"></a>
+    </td>
+</tr>
+</tbody>
+</table>

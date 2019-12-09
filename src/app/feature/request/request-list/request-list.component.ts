@@ -17,6 +17,8 @@ export class RequestListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    super.ngOnInit();
+    this.sysSvc.checkLogin();
     console.log("Calling requests..");
     this.requestSvc.list().subscribe(jr=> {
       console.log("jr:", jr);

@@ -10,7 +10,7 @@
             <table class="table table-striped">
                 <tr>
                     <td>
-                        User Name:
+                        Username:
                     </td>
                     <td>
                         <input [(ngModel)]="user.userName" class="rounded" type="text">
@@ -52,20 +52,33 @@
                         <input [(ngModel)]="user.email" class="rounded" type="text">
                     </td>
                     <td>
-                        Reviwer:
+                        Reviewer
                     </td>
-                    <td>
-                        <input [(ngModel)]="user.reviewer" class="rounded" type="text">
+                    <td *ngIf="isAdmin">
+                        <input [(ngModel)]="user.Reviewer" class="rounded" type="radio" value="false" name="isReviewer">
+                        False
+                        <input [(ngModel)]="user.Reviewer" class="rounded" type="radio" value="true" name="isReviewer">
+                        True
                     </td>
-                    <td>
-                        Admin:
+                    <td *ngIf="!isAdmin">
+                        <input [(ngModel)]="user.Reviewer" class="rounded" type="text" disabled>
+    
                     </td>
+                </tr>
+                <tr>
                     <td>
-                        <input [(ngModel)]="user.admin" class="rounded" type="text">
+                        Admin
+                    </td>
+                    <td *ngIf="isAdmin">
+                        <input [(ngModel)]="user.Admin" class="rounded" type="radio" value="false" name="isAdmin"> False
+                        <input [(ngModel)]="user.Admin" class="rounded" type="radio" value="true" name="isAdmin"> True
+                    </td>
+                    <td *ngIf="!isAdmin">
+                        <input [(ngModel)]="user.Admin" class="rounded" type="text" disabled>
                     </td>
                 </tr>
             </table>
         </main>
-        <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> | 
-    <span><button (click)="backClicked()" class ="btn btn-sm btn-primary">Back</button></span>    
+        <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> |
+        <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
     </div>

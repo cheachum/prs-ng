@@ -18,6 +18,8 @@ jr: JsonResponse;
     super(sysSvc);
    }
   ngOnInit() {
+    super.ngOnInit();
+    this.sysSvc.checkLogin();
     console.log("Calling vendor service list...");
     this.vendorSvc.list().subscribe(jresp => {
     this.jr =jresp;

@@ -4,13 +4,16 @@ import { Request } from 'src/app/model/request.class';
 import { RequestService } from 'src/app/service/request.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base/base.component';
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'app-request-edit',
   templateUrl: './request-edit.component.html',
   styleUrls: ['./request-edit.component.css']
 })
-export class RequestEditComponent implements OnInit {
+export class RequestEditComponent extends BaseComponent implements OnInit {
   title: string = " Request Edit";
   request: Request = new Request();
   users: User[]=[];
@@ -19,9 +22,16 @@ export class RequestEditComponent implements OnInit {
   constructor(private requestSvc: RequestService,
     private userSvc: UserService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private loc: Location,
+    protected sysSvc: SystemService) { 
+      super(sysSvc);
+    }
 
-  ngOnInit() { this.route.params.subscribe(parms => this.id=parms['id']);
+  ngOnInit() { 
+    super.ngOnInit();
+    this.sysSvc.checkLogin();
+    this.route.params.subscribe(parms => this.id=parms['id']);
   this.requestSvc.get(this.id).subscribe(jr => {
     this.request = jr.data as Request;
     console.log("Request to edit: ", this.request);
@@ -39,6 +49,9 @@ export class RequestEditComponent implements OnInit {
       this.router.navigateByUrl("/requests/list")
     });
 
+  }
+  backClicked(){
+    this.loc.back();
   }
       compUser(a:User, b: User): boolean {
         return a && b && a.id === b.id;

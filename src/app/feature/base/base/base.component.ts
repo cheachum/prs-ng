@@ -8,7 +8,7 @@ import { SystemService } from 'src/app/service/system.service';
 export class BaseComponent implements OnInit {
   sortCriteria: string = "id";
   sortOrder: string = "asc";
-  loggedInUser: User =null;
+  loggedInUser: User = null;
   isAdmin: boolean; 
   isReviewer: boolean; 
 

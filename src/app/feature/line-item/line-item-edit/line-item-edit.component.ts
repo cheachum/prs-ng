@@ -6,16 +6,17 @@ import { LineItemService } from 'src/app/service/line-item.service';
 import { ProductService } from 'src/app/service/product.service';
 import { SystemService } from 'src/app/service/system.service';
 import { Location } from '@angular/common';
+import { BaseComponent } from '../../base/base/base.component';
 
 @Component({
   selector: 'app-lineitem-edit',
   templateUrl: './line-item-edit.component.html',
   styleUrls: ['./line-item-edit.component.css']
 })
-export class LineItemEditComponent implements OnInit {
+export class LineItemEditComponent extends BaseComponent implements OnInit {
   title: string = "Line Item Edit";
-  lineItem: LineItem;
-  products: Product[];
+  lineItem: LineItem = new LineItem();
+  products: Product[] = [];
   id: number = 0;
 
   constructor(
@@ -24,17 +25,8 @@ export class LineItemEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     protected sysService: SystemService) {
+      super(sysService)
     
-  }
-
-  save(): void {
-    this.lineItemSvc.change(this.lineItem).subscribe(jr => {
-      console.log("saved lineItem...");
-      console.log(this.lineItem);
-      this.router.navigateByUrl("/requests/lines/" + this.lineItem.request.id);
-    });
-
-
   }
 
   ngOnInit() {
@@ -48,6 +40,16 @@ export class LineItemEditComponent implements OnInit {
       this.products = jr.data as Product[];
       console.log("products", this.products);
     });
+  }
+    save(): void {
+      this.lineItemSvc.change(this.lineItem).subscribe(jr => {
+        console.log("saved lineItem...");
+        console.log(this.lineItem);
+        this.router.navigateByUrl("/requests/lines/" + this.lineItem.request.id);
+      })
+  }
+  compProduct(a:Product, b: Product): boolean{
+    return a && b && a.id ===b.id;
   }
 
 }

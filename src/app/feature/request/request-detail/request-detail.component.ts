@@ -4,13 +4,16 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/user.class';
 import { Request } from 'src/app/model/request.class';
+import { SystemService } from 'src/app/service/system.service';
+import { Location } from '@angular/common';
+import { BaseComponent } from '../../base/base/base.component';
 
 @Component({
   selector: 'app-request-detail',
   templateUrl: './request-detail.component.html',
   styleUrls: ['./request-detail.component.css']
 })
-export class RequestDetailComponent implements OnInit {
+export class RequestDetailComponent extends BaseComponent implements OnInit {
   title: string = " Request Edit";
   request: Request = new Request();
   users: User[]=[];
@@ -19,9 +22,15 @@ export class RequestDetailComponent implements OnInit {
   constructor(private requestSvc: RequestService,
     private userSvc: UserService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    protected sysSvc: SystemService,
+    private loc: Location) {
+      super(sysSvc);
+     }
 
-    ngOnInit() {this.route.params.subscribe(parms => this.id=parms['id']);
+    ngOnInit() {
+      super.ngOnInit();
+      this.route.params.subscribe(parms => this.id=parms['id']);
     this.requestSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
       console.log("Request to edit: ", this.request);
